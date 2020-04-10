@@ -222,14 +222,4 @@
 - **第 02 期**：[**Activity 与 Fragment 之间常见的几种通信方式？**](https://github.com/Moosphan/Android-Daily-Interview/issues/2)
 - **第 01 期**：[**自定义 Handler 时如何有效地避免内存泄漏问题？**](https://github.com/Moosphan/Android-Daily-Interview/issues/1)
 
-## Thanks
-
-> 感谢 [**玩 Android**](https://www.wanandroid.com) 为广大安卓开发者无私提供一个比较全面的 Android 学习平台，此项目部分灵感亦来源于此。
-
-
-
-## 最后
-
-> 建立这个项目的初衷是想大家每天以**答题打卡**的方式来巩固基础知识和查漏补缺。我相信，如果每天能够坚持打卡，不出一个月定能意识到自己的成长。因此，对于想要和我们一样坚持的同学，欢迎来加群探讨，群号**713463651**，请特别备注：**坚持打卡**。
-
 
