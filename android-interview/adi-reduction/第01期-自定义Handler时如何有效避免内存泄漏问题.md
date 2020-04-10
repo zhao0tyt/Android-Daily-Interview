@@ -107,6 +107,7 @@ public class SampleActivity extends Activity {
 ----------------------
 
 #### 涉及知识点
+
 - java中，非静态的内部类和匿名内部类都会隐式的持有一个外部类的引用。静态内部类则不会持有外部类的引用。
 
 - 
