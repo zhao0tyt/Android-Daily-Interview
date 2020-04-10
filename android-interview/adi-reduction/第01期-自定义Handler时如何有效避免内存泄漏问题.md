@@ -115,3 +115,4 @@ public class SampleActivity extends Activity {
 | 软引用（SoftReference）    | 如果内存空间足够，垃圾回收器就不会回收它，如果内存空间不足了，就会回收这些对象的内存。 |
 | 弱引用（WeakReference      | 在垃圾回收器一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存。 |
 | 虚引用（PhantomReference） | 如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可能被垃圾回收。 |
+
