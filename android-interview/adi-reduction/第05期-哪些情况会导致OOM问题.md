@@ -4,8 +4,10 @@
 
 #### Android的 java程序为什么容易出现OOM？
 这个问题要涉及到android系统的设置方面了，主要因为Android系统对 dalvik
-的 vm heapsize 作了硬性限制，当java进程申请的java空间超过阈值时，就会抛出OOM异常（这个阈值可以是48M、24M、16M等，视机型而定），可以通过命令查看此值。 `adb shell getprop | grep dalvik.vm.heapgrowthlimit`
-也可在代码中通过api来获取该数值
+的 vm heapsize 作了硬性限制，当java进程申请的java空间超过阈值时，就会抛出OOM异常（这个阈值可以是48M、24M、16M等，视机型而定）。  
+可以通过命令查看此值： 
+`adb shell getprop | grep dalvik.vm.heapgrowthlimit`
+也可在代码中通过api来获取该数值  
 `ActivityManager activityManager =(ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE); activityManager.getMemoryClass();`
 
 以上方法会返回以M为单位的数字，不同的系统平台或设备上的值都不太一样。
