@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="base_rv_item_text_size">18sp</dimen>
+    <dimen name="base_rv_item_padding_top">5dp</dimen>
+    <dimen name="base_rv_item_padding_bottom">5dp</dimen>
+</resources>
