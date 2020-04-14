@@ -1,7 +1,4 @@
 # 《Android开发艺术探索》笔记
-本笔记整理自:   https://www.gitbook.com/book/tom510230/android_ka_fa_yi_shu_tan_suo/details
-参考文章：http://szysky.com/tags/#笔记、http://blog.csdn.net/player_android/article/category/6577498
-联系我：`xiadeye@icloud.com`
 
 本书是一本Android进阶类书籍，采用理论、源码和实践相结合的方式来阐述高水准的Android应用开发要点。本书从三个方面来组织内容。
 1. 介绍Android开发者不容易掌握的一些知识点
