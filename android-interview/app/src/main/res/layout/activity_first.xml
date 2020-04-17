@@ -9,12 +9,16 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <TextView
+            android:id="@+id/tv_process"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <Button
             android:id="@+id/button_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="BUTTON1"/>
+            android:text="跳转到Second Activity"/>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ipc.IpcFragment">
 
+    <TextView
+        android:id="@+id/tv_process"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="@string/choose_ipc"
+        android:textSize="@dimen/base_rv_item_text_size"/>
     <Button
-        android:id="@+id/ipc_bt"
+        android:id="@+id/ipc_bundle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="IPC进程间通信-Bundle" />
+        android:text="Bundle" />
+    <Button
+        android:id="@+id/ipc_share_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="共享文件" />
 
-</FrameLayout>
+</LinearLayout>

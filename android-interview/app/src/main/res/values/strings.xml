@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Demo Collection</string>
     <string name="base_rv_item_text">item text</string>
+    <string name="first_activity">First Activity</string>
+    <string name="second_activity">Second Activity</string>
+    <string name="choose_ipc">请选择进程间通信方式：</string>
+    进程间通信
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
