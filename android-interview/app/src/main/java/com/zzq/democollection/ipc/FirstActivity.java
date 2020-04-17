@@ -2,6 +2,7 @@ package com.zzq.democollection.ipc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -18,10 +19,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.RuntimePermissions;
+
+@RuntimePermissions
 public class FirstActivity extends AppCompatActivity {
 //    public static final String CACHE_PATH = Environment.getExternalStorageDirectory() + "/IPCCache";
-    public static final String CACHE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "mypath";
+    public static final String CACHE_PATH = "data/data/com.zzq.democollection/cache";
+    public static final String FILENAME = "file.txt";
     String ipcStyle = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,49 +60,51 @@ public class FirstActivity extends AppCompatActivity {
 
             }
         });
-//        WriteToFile();
-        String fileName = "file.txt";
-        File dir = new File(CACHE_PATH);
-        if (!dir.exists()) {
-            Log.d("zzq", "not exist");
-            Log.d("zzq", "CACHE_PATH" + CACHE_PATH);
-            dir.mkdirs();
-        }
-        File cacheFile = new File(CACHE_PATH, fileName);
-        if (!cacheFile.exists()) {
-            try {
-                cacheFile.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
+//        String fileName = "file.txt";
+//        File dir = new File(CACHE_PATH);
+//        if (!dir.exists()) {
+//            Log.d("zzq", "not exist");
+//            Log.d("zzq", "CACHE_PATH" + CACHE_PATH);
+//            dir.mkdirs();
+//        }
+//        File cacheFile = new File(CACHE_PATH, fileName);
+//        if (!cacheFile.exists()) {
+//            try {
+//                cacheFile.createNewFile();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+        FirstActivityPermissionsDispatcher.WriteToFileWithPermissionCheck(this);
     }
 
-
-    private void WriteToFile() {
-        final Person person = new Person("zzq");
-        final String fileName = "file.txt";
+    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+     void WriteToFile() {
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                File dir = new File(CACHE_PATH,fileName);
+                Log.d("zzq","WriteToFile run ");
+                File dir = new File(CACHE_PATH);
                 if (!dir.exists()) {
                     dir.mkdir();
                 }
 
-                File cacheFile = new File(CACHE_PATH);
-
+                File cacheFile = new File(CACHE_PATH,FILENAME);
+                Log.d("zzq","filename = "+cacheFile.getName());
                 ObjectOutputStream objectOutputStream = null;
                 try {
-                    if(!cacheFile.exists())
-                        cacheFile.createNewFile();
-
+                    boolean isExists = cacheFile.exists();
+                    Log.d("zzq","cacheFile exists = "+isExists);
+                    if (!cacheFile.exists()) {
+                        boolean success = cacheFile.createNewFile();
+                        Log.d("zzq","createNewFile = "+success);
+                    }
                     objectOutputStream = new ObjectOutputStream(new FileOutputStream(cacheFile));
-                    objectOutputStream.writeObject(person);
+                    objectOutputStream.writeObject("aaaaaaaa");
 
                 } catch (IOException e) {
+                    Log.d("zzq","IOException ");
                     e.printStackTrace();
                 } finally {
                     try {
