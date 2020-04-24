@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zzq.democollection">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,24 +12,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ipc.BookActivity"></activity>
+
         <service
             android:name=".ipc.MyService"
             android:enabled="true"
             android:exported="true"
-            android:process="com.zzq.democollection.myservice"></service>
+            android:process="com.zzq.democollection.myservice" />
+        <service
+            android:name=".ipc.MyAIDLService"
+            android:enabled="true"
+            android:exported="true"
+            android:process="android.aidl.service" />
 
-        <activity android:name=".ipc.ThirdActivity"
-            android:process=":activity"/>
-
-        <activity android:name=".ipc.SecondActivity"
-            android:process="com.zzq.democollection.activity"
-            android:label="@string/second_activity"/>
-
-        <activity android:name=".ipc.FirstActivity"
-            android:label="@string/first_activity"/>
-
+        <activity
+            android:name=".ipc.ThirdActivity" />
+        <activity
+            android:name=".ipc.SecondActivity"
+            android:label="@string/second_activity"
+            android:process="com.zzq.democollection.activity" />
+        <activity
+            android:name=".ipc.FirstActivity"
+            android:label="@string/first_activity" />
         <activity android:name=".DetailActivity" />
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,6 +42,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="com.zzq.democollection.ipc.bookcontentprovider"
+            android:name=".ipc.BookContentProvider"
+            android:process=":provider"
+            android:permission="com.zzq.democollection.PROVIDER">
+        </provider>
+
     </application>
 
 </manifest>

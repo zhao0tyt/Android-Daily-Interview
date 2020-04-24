@@ -56,8 +56,12 @@ public class IpcFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_ipc, container, false);
         Button btBundle = view.findViewById(R.id.ipc_bundle);
         Button btShareFile = view.findViewById(R.id.ipc_share_file);
+        Button btAidl = view.findViewById(R.id.ipc_aidl);
+        Button btContentProvider = view.findViewById(R.id.ipc_content_provider);
         btBundle.setOnClickListener(this);
         btShareFile.setOnClickListener(this);
+        btAidl.setOnClickListener(this);
+        btContentProvider.setOnClickListener(this);
         return view;
     }
 
@@ -82,6 +86,16 @@ public class IpcFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.ipc_share_file:
                 extra = SHARE_FILE;
+                break;
+            case R.id.ipc_aidl:
+                Intent aidl = new Intent(getActivity(), BookActivity.class);
+                startActivity(aidl);
+                return;
+            case R.id.ipc_content_provider:
+                Intent cp = new Intent(getActivity(), ThirdActivity.class);
+                startActivity(cp);
+                return;
+            default:
                 break;
         }
         intent.putExtra("ipc", extra);

@@ -24,5 +24,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="共享文件" />
-
+    <Button
+        android:id="@+id/ipc_aidl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AIDL" />
+    <Button
+        android:id="@+id/ipc_content_provider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Content Provider" />
 </LinearLayout>

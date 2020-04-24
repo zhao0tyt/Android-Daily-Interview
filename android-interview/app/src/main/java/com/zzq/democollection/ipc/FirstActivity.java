@@ -3,9 +3,9 @@ package com.zzq.democollection.ipc;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,17 +22,19 @@ import java.io.ObjectOutputStream;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
 
-@RuntimePermissions
+//@RuntimePermissions
 public class FirstActivity extends AppCompatActivity {
-//    public static final String CACHE_PATH = Environment.getExternalStorageDirectory() + "/IPCCache";
-    public static final String CACHE_PATH = "data/data/com.zzq.democollection/cache";
-    public static final String FILENAME = "file.txt";
+    public static  String FILE_PATH;
+    public static final String FILE_NAME = "file.txt";
+    private Context context;
     String ipcStyle = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
+        context = this;
+        FILE_PATH = context.getExternalFilesDir(null).getAbsolutePath();
         Intent intent = getIntent();
         if (intent != null) {
             ipcStyle = intent.getStringExtra("ipc");
@@ -49,48 +51,45 @@ public class FirstActivity extends AppCompatActivity {
                     if (ipcStyle.equals(IpcFragment.BUNDLE)) {
                         Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
                         Bundle bundle = new Bundle();
+                        bundle.putString("flag", IpcFragment.BUNDLE);
                         bundle.putString("extra", "ipc bundle");
                         intent.putExtras(bundle);
                         startActivity(intent);
                     } else if (ipcStyle.equals(IpcFragment.SHARE_FILE)) {
                         Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("flag", IpcFragment.SHARE_FILE);
+                        bundle.putString("file_path", FILE_PATH);
+                        bundle.putString("file_name", FILE_NAME);
+                        intent.putExtras(bundle);
                         startActivity(intent);
                     }
                 }
 
             }
         });
-//        String fileName = "file.txt";
-//        File dir = new File(CACHE_PATH);
-//        if (!dir.exists()) {
-//            Log.d("zzq", "not exist");
-//            Log.d("zzq", "CACHE_PATH" + CACHE_PATH);
-//            dir.mkdirs();
-//        }
-//        File cacheFile = new File(CACHE_PATH, fileName);
-//        if (!cacheFile.exists()) {
-//            try {
-//                cacheFile.createNewFile();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-        FirstActivityPermissionsDispatcher.WriteToFileWithPermissionCheck(this);
+        WriteToFile();
+//        FirstActivityPermissionsDispatcher.WriteToFileWithPermissionCheck(this);
     }
 
-    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    // 单个权限
+    // @NeedsPermission(Manifest.permission.CAMERA)
+    // 多个权限
+//    @NeedsPermission({Manifest.permission.READ_EXTERNAL_STORAGE,
+//            Manifest.permission.WRITE_EXTERNAL_STORAGE})
      void WriteToFile() {
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.d("zzq","WriteToFile run ");
-                File dir = new File(CACHE_PATH);
+                Log.d("zzq",FILE_PATH);
+                File dir = new File(FILE_PATH);
                 if (!dir.exists()) {
-                    dir.mkdir();
+                  boolean success = dir.mkdir();
+                    Log.d("zzq", "create dir "+success);
                 }
 
-                File cacheFile = new File(CACHE_PATH,FILENAME);
+                File cacheFile = new File(FILE_PATH, FILE_NAME);
                 Log.d("zzq","filename = "+cacheFile.getName());
                 ObjectOutputStream objectOutputStream = null;
                 try {
@@ -101,7 +100,7 @@ public class FirstActivity extends AppCompatActivity {
                         Log.d("zzq","createNewFile = "+success);
                     }
                     objectOutputStream = new ObjectOutputStream(new FileOutputStream(cacheFile));
-                    objectOutputStream.writeObject("aaaaaaaa");
+                    objectOutputStream.writeObject("share file");
 
                 } catch (IOException e) {
                     Log.d("zzq","IOException ");
