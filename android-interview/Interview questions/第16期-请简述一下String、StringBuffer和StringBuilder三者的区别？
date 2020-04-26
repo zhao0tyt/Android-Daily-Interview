@@ -1,0 +1,4 @@
+String 为字符串常量，一旦创建不可以被修改，是线程安全的；String 类使用 final 修饰符，不可以被继承；String 的长度是不变的。适用于少量操作的字符串。
+StringBuffer 为字符串变量，长度是可变的，线程安全。适用于多线程下在字符缓冲区进行大量字符串操作
+StringBuilder 为字符串变量，长度是可变的，线程不安全。适用于单线程下在字符缓冲区进行大量字符串操作。
+字符串操作在执行速度：StringBuilder > StringBuffer > String
