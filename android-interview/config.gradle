@@ -1,0 +1,33 @@
+ext{
+
+    // app 相关版本控制
+    versions = [
+            minSdkVersion     : 15,
+            targetSdkVersion  : 28,
+
+            compileSdkVersion : 28,
+            buildToolsVersion : "29.0.2",
+
+            versionCode    : 1,
+            versionName    : "1.0",
+    ]
+
+    // 依赖相关版本控制
+    depVersion = [
+            appCompatVersion                 : "1.0.2",
+            constraintlayoutVersion          : "1.1.3",
+            recyclerviewVersion              : "1.0.0",
+            permissionsdispatcherVersion     : "4.7.0",
+            legacyVersion         : "1.0.0"
+    ]
+
+    // 依赖
+    dependencies = [
+            appcompat            : "androidx.appcompat:appcompat:${depVersion.appCompatVersion}",
+            constraintlayout     : "androidx.constraintlayout:constraintlayout:${depVersion.constraintlayoutVersion}",
+            recyclerview         : "androidx.recyclerview:recyclerview:${depVersion.recyclerviewVersion}",
+            permissionsdispatcher: "org.permissionsdispatcher:permissionsdispatcher:${depVersion.permissionsdispatcherVersion}",
+            permissionsdispatcher_processor: "org.permissionsdispatcher:permissionsdispatcher-processor:${depVersion.permissionsdispatcherVersion}",
+            legacy_support_v4    :"androidx.legacy:legacy-support-v4:${depVersion.legacyVersion}",
+    ]
+}
