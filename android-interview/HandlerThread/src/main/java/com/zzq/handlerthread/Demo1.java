@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+<<<<<<< HEAD
+=======
+import android.os.Looper;
+>>>>>>> 3e764ff014e50c45c12e94d70dd48ff3501811c6
 import android.os.Message;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +26,7 @@ public class Demo1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo1);
+
         text = findViewById(R.id.text);
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
