@@ -22,6 +22,7 @@ public class Demo1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo1);
+
         text = findViewById(R.id.text);
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
