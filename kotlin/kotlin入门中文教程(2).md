@@ -1986,3 +1986,33 @@ fun main() {
     }
 }
 ```
+### 二十五、特殊符号
+
+#### 25.1、反引号（键盘左上角和波浪线在一起的符号） ``
+
+在Kotlin中可以用反引号解决关键字冲突的问题，可以强行将一个不合法的字符变为合法。
+
+```kotlin
+   private fun downloadUrlBitmap(urlString: String): Bitmap? {
+        var urlConnection: HttpURLConnection? = null
+        var `in`: BufferedInputStream? = null
+        var bitmap: Bitmap? = null
+        try {
+            val url = URL(urlString)
+            urlConnection = url.openConnection() as HttpURLConnection
+            `in` = BufferedInputStream(urlConnection.inputStream, 8 * 1024)
+            bitmap = BitmapFactory.decodeStream(`in`)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } finally {
+            urlConnection?.disconnect()
+            try {
+                `in`?.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+
+        }
+        return bitmap
+    }
+```
