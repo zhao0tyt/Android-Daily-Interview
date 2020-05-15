@@ -2016,3 +2016,20 @@ fun main() {
         return bitmap
     }
 ```
+
+#### 25.2、类型链接 public typealias
+
+typealias可以将B类映射到A类上，从而这个A类便具有了B类的特性。
+```kotlin
+fun main(args: Array<String>) {
+    var file:File = A("");
+    file.isFile;
+ 
+}
+ 
+ 
+public typealias A = File;
+```
+看到我们将File这个类赋值给了A这个类，于是A便有了File的一切特性。我们在main函数中可以用A去实例化产生对象file，通过A实例化的对象file可以调用File的一切方法。这便是typealisa的作用。
+
+其实在Kotlin中有非常多的类都是通过typealisa去映射Java类从而得来得。比如Kotlin中的HashMap就是通过映射java中的HashMap得来的。为什么会这么做呢？个人认为，这么做的话以后对kotlin中的HashMap进行优化可以直接在kotlin中处理，就不需要去对Java中的HashMap进行兼容了。
