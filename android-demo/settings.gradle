@@ -1,2 +1,2 @@
-include ':app', ':HandlerThread'
+include ':app', ':HandlerThread', ':IntentService'
 rootProject.name='Demo Collection'

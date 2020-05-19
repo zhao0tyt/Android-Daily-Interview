@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/HandlerThread" />
+            <option value="$PROJECT_DIR$/IntentService" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
