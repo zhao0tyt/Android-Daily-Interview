@@ -22,7 +22,7 @@
       * [2.4.6 使用Socket](#246-使用socket)
    * [2.5 Binder连接池](#25-binder连接池)
    * [2.6 选用合适的IPC方式](#26-选用合适的ipc方式)
-* [3 View的事件体系](#3-view的事件体系)
+   * [3 View的事件体系](#3-view的事件体系) 
       * [3.1.1什么是view](#311什么是view)
       * [3.1.2 View的位置参数](#312-view的位置参数)
       * [3.1.3 MotionEvent和TouchSlop](#313-motionevent和touchslop)
