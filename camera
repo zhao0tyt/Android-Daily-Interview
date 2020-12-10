@@ -1,0 +1,50 @@
+
+学习网址：
+https://blog.csdn.net/u012596975/article/details/107138576  
+
+学习内容：
+1.CamX-CHI基本目录结构
+2.基本组件概念
+3.组件结构关系
+4.打开相机设备/初始化相机设备(open函数)
+面试问题：
+  open camera传递参数？
+   camera id (0 后置 1 前置)
+
+5.配置相机设备数据流（configure_streams函数）
+面试问题一：
+configure_streams传递哪些参数?
+  (1)format
+  (2)width
+  (3)height
+  (4)stream_type
+  (5)usage
+  (6)max_buffers
+  (7)rotation
+面试问题二：
+configure_streams大致工作?
+  (1)根据operation_mode、camera 个数以及stream的配置信息选取了对应的UsecaseId
+  (2)根据所选取的UsecaseId，使用UsecaseFactory简单工厂类创建了用于管理整个场景下所有资源的AdvancedCameraUsecase对象。
+  (3)创建AdvancedCameraUsecase对象是通过调用其Create()方法完成，该方法中获取了common_usecase.xml定义的关于Usecase的配置信息
+  之后又根据需要创建了Feature并选取了Feature所需的pipeline，并通过Override机制将Feature中所需要的Pipeline加入重建后的Usecase中。
+  (4)最后通过调用CameraUsecaseBaese的initialize方法依次创建了各个pipeline以及Session，并且将AdvancedCameraUsecase的成员方法注册到Session，用于Session将数据返回给Usec
+
+6.Process request流程(参照学习资料中Session::ProcessCaptureRequest章节)
+  (1)通过调用Session的ProcessCaptureRequest方法进入到Session，然后调用Pipeline中的ProcessRequest方法通知Pipeline开始处理此次Request。
+  (2)在Pipeline中，会先去调用内部的每一个Node的SetupRequest方法分别设置该Node的Output Port以及Input Port，
+  之后通过调用DRQ(DeferredRequestQueue)的AddDeferredNode方法将所有的Node加入到DRQ中，
+  其中DRQ中有两个队列分别是用于保存没有依赖项的Node的m_readyNodes以及保存处于等待依赖关系满足的Node的m_deferredNodes，
+  当调用DRQ的DispatchReadyNodes方法后，会开始从m_readyNodes队列中取出Node调用其ProcessRequest开始进入Node内部处理本次request，
+  在处理过程中会更新meta data数据，并更新至DRQ中，当该Node处理完成之后，会将处于m_deferredNodes中的已无依赖关系的Node移到m_readyNodes中，
+  并再次调用DispatchReadyNodes方法从m_readyNodes取出Node进行处理。
+  与此过程中，当Node的数据处理完成之后会通过CSLFenceCallback通知到Pipeline，此时Pipeline会判断当前Node的Output port 是否是Sink Port(输出到CHI)，
+  ->如果不是，则会更新依赖项到DRQ中，并且将不存在依赖项的Node移到m_readyNodes队列中，然后调用DispatchReadyNdoes继续进入到DRQ中流转，
+  ->如果是Sink Port，则表示此Node是整个Pipeline的最末端，调用sinkPortFenceSignaled将数据给到Session中，最后通过调用Session中的NotifyResult将结果发送到CHI中
+
+7.Capture result传递过程(参照学习资料中 上传拍照结果 章节)
+面试问题：
+  Image buffer如何传递?
+  node->pipeline->session->usecase
+
+8.Open camera与configure stream之间做了什么？
+  获取camera info
