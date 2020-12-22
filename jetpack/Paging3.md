@@ -2,4 +2,4 @@
 [paging3 demo](https://github.com/android/architecture-components-samples/tree/main/PagingWithNetworkSample)  
 [paging3 demo](https://github.com/googlecodelabs/android-paging/branches)  
 [Paging3使用方法介绍](https://blog.csdn.net/vitaviva/article/details/109400331)  
-[这篇看完，Paging3大概可以入门了](https://blog.csdn.net/ajsliu1233/article/details/111499843)  
+[这篇看完，Paging3大概可以入门了](https://huanglinqing.blog.csdn.net/article/details/109696431)  
